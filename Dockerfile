@@ -19,6 +19,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV HOST=0.0.0.0
 ENV CUDA_DOCKER_ARCH=all
 ENV LLAMA_CUBLAS=1
+ENV OPENAI_API_KEY=sk-XXXXXXXXXXXXXXXXXXXX
+ENV OPENAI_API_HOST=http://localhost:8000
+ENV N_GPU_LAYERS=16
 
 WORKDIR /app
 
@@ -28,9 +31,6 @@ COPY --from=build /app/public ./public
 COPY --from=build /app/package*.json ./
 COPY --from=build /app/next.config.js ./next.config.js
 COPY --from=build /app/next-i18next.config.js ./next-i18next.config.js
-
-## Add the wait script to the image
-COPY --from=ghcr.io/ufoscout/docker-compose-wait:latest /wait /wait
 
 # Install system dependencies
 # Install Node.js 19.x
