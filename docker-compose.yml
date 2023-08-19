@@ -14,6 +14,7 @@ services:
       - './run.sh:/app/run.sh'
     environment:
       MODEL: '/models/llama-2-7b-chat.bin'
+      DEFAULT_MODEL: '/models/llama-2-7b-chat.bin'
       MODEL_DOWNLOAD_URL: 'https://huggingface.co/TheBloke/Nous-Hermes-Llama-2-7B-GGML/resolve/main/nous-hermes-llama-2-7b.ggmlv3.q4_0.bin'
     privileged: true
     deploy:
