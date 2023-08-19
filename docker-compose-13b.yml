@@ -3,7 +3,7 @@ version: '3.6'
 services:
   llama-gpt-api-13b:
     build:
-      context: ./gpt-service
+      context: ./
       dockerfile: Dockerfile
     restart: on-failure
     ports:
@@ -11,7 +11,7 @@ services:
       - 3000:3000
     volumes:
       - './models:/models'
-      - './gpt-service/run.sh:/app/run.sh'
+      - './run.sh:/app/run.sh'
     environment:
       MODEL: '/models/llama-2-13b-chat.bin'
       N_GPU_LAYERS: 64

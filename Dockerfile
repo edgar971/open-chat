@@ -1,7 +1,7 @@
 # ---- Base Node ----
 FROM node:19-alpine AS base
 WORKDIR /app
-COPY package*.json ./
+COPY /ui/package*.json ./
 
 # ---- Dependencies ----
 FROM base AS dependencies
@@ -9,7 +9,7 @@ RUN npm ci
 
 # ---- Build ----
 FROM dependencies AS build
-COPY . .
+COPY /ui .
 RUN npm run build
 
 # ---- Production ----
