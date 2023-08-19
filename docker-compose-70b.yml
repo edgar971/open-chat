@@ -2,33 +2,30 @@ version: '3.6'
 
 services:
   llama-gpt-api-70b:
-    image: ghcr.io/abetlen/llama-cpp-python:latest
+    build:
+      context: ./gpt-service
+      dockerfile: Dockerfile
     restart: on-failure
+    ports:
+      - 8000:8000
+      - 3000:3000
     volumes:
       - './models:/models'
-      - './api:/api'
+      - './gpt-service/run.sh:/app/run.sh'
     environment:
       MODEL: '/models/llama-2-70b-chat.bin'
+      N_GPU_LAYERS: 64
       MODEL_DOWNLOAD_URL: 'https://huggingface.co/TheBloke/Llama-2-70B-Chat-GGML/resolve/main/llama-2-70b-chat.ggmlv3.q4_0.bin'
-      # Llama 2 70B's grouping factor is 8 compared to 7B and 13B's 1. Currently,
-      # it's not possible to change this using --n_gqa with llama-cpp-python in
-      # run.sh, so we expose it as an environment variable.
-      # See: https://github.com/abetlen/llama-cpp-python/issues/528
-      # and: https://github.com/facebookresearch/llama/issues/407
-      N_GQA: '8'
-      USE_MLOCK: 1
-    cap_add:
-      - IPC_LOCK
-    command: '/bin/sh /api/run.sh'
-
-  llama-gpt-ui:
-    image: 'ghcr.io/getumbrel/llama-gpt-ui:latest'
-    ports:
-      - 3000:3000
-    restart: on-failure
-    environment:
-      - 'OPENAI_API_KEY=sk-XXXXXXXXXXXXXXXXXXXX'
-      - 'OPENAI_API_HOST=http://llama-gpt-api-70b:8000'
-      - 'DEFAULT_MODEL=/models/llama-2-70b-chat.bin'
-      - 'WAIT_HOSTS=llama-gpt-api-70b:8000'
-      - 'WAIT_TIMEOUT=600'
+      OPENAI_API_KEY: sk-XXXXXXXXXXXXXXXXXXXX
+      OPENAI_API_HOST: http://localhost:8000
+      DEFAULT_MODEL: /models/llama-2-70b-chat.bin
+      WAIT_HOSTS: localhost:8000
+      WAIT_TIMEOUT: 600
+    privileged: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]

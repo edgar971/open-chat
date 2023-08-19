@@ -2,27 +2,30 @@ version: '3.6'
 
 services:
   llama-gpt-api-13b:
-    image: ghcr.io/abetlen/llama-cpp-python:latest
+    build:
+      context: ./gpt-service
+      dockerfile: Dockerfile
     restart: on-failure
+    ports:
+      - 8000:8000
+      - 3000:3000
     volumes:
       - './models:/models'
-      - './api:/api'
+      - './gpt-service/run.sh:/app/run.sh'
     environment:
       MODEL: '/models/llama-2-13b-chat.bin'
-      USE_MLOCK: 1
+      N_GPU_LAYERS: 64
       MODEL_DOWNLOAD_URL: 'https://huggingface.co/TheBloke/Nous-Hermes-Llama2-GGML/resolve/main/nous-hermes-llama2-13b.ggmlv3.q4_0.bin'
-    cap_add:
-      - IPC_LOCK
-    command: '/bin/sh /api/run.sh'
-
-  llama-gpt-ui:
-    image: 'ghcr.io/getumbrel/llama-gpt-ui:latest'
-    ports:
-      - 3000:3000
-    restart: on-failure
-    environment:
-      - 'OPENAI_API_KEY=sk-XXXXXXXXXXXXXXXXXXXX'
-      - 'OPENAI_API_HOST=http://llama-gpt-api-13b:8000'
-      - 'DEFAULT_MODEL=/models/llama-2-13b-chat.bin'
-      - 'WAIT_HOSTS=llama-gpt-api-13b:8000'
-      - 'WAIT_TIMEOUT=600'
+      OPENAI_API_KEY: sk-XXXXXXXXXXXXXXXXXXXX
+      OPENAI_API_HOST: http://localhost:8000
+      DEFAULT_MODEL: /models/llama-2-13b-chat.bin
+      WAIT_HOSTS: localhost:8000
+      WAIT_TIMEOUT: 600
+    privileged: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
