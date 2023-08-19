@@ -12,15 +12,6 @@ then
     exit 1
 fi
 
-# check if curl is installed
-
-if ! [ -x "$(command -v curl)" ]; then
-    echo "curl is not installed. Installing..."
-    apt-get update --yes --quiet
-    apt-get install --yes --quiet curl
-fi
-
-
 if [ ! -f $MODEL ]; then
     echo "Model file not found. Downloading..."
     curl -L -o $MODEL $MODEL_DOWNLOAD_URL
@@ -28,15 +19,11 @@ else
     echo "$MODEL model found."
 fi
 
-make build
 # Get the number of available threads on the system
 n_threads=$(grep -c ^processor /proc/cpuinfo)
 
 # Define context window
 n_ctx=4096
-
-# Offload everything to CPU
-n_gpu_layers=0
 
 # Define batch size
 n_batch=2096
@@ -52,4 +39,8 @@ echo "Number of CPU threads: $n_threads"
 echo "Number of GPU layers: $n_gpu_layers"
 echo "Context window: $n_ctx"
 
-exec python3 -m llama_cpp.server --n_ctx $n_ctx --n_threads $n_threads --n_gpu_layers $n_gpu_layers --n_batch $n_batch
+# Start the first process
+npm start &
+
+# Start the second process
+exec python3 -m llama_cpp.server --n_ctx $n_ctx --n_threads $n_threads --n_batch $n_batch
