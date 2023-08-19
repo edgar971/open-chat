@@ -2,8 +2,9 @@ name: Build Docker images on master push
 
 on:
   push:
-    tags:
-      - "*"
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   build:
