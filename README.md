@@ -1,10 +1,10 @@
 <p align="center">
   <a href="https://apps.umbrel.com/app/llama-gpt">
-    <img width="150" height="150" src="https://i.imgur.com/LI59cui.png" alt="LlamaGPT" width="200" />
+    <img width="150" height="150" src="https://i.imgur.com/LI59cui.png" alt="OpenLLM" width="200" />
   </a>
 </p>
 <p align="center">
-  <h1 align="center">LlamaGPT</h1>
+  <h1 align="center">OpenLLM</h1>
   <p align="center">
     A self-hosted, offline, ChatGPT-like chatbot with different LLM support. 100% private, with no data leaving your device.
   </p>
@@ -14,28 +14,28 @@
 
 ---
 
-### Install LlamaGPT anywhere else with Docker
+### Install OpenLLM anywhere else with Docker
 
-You can run LlamaGPT on any x86 or arm64 system. Make sure you have Docker installed.
+You can run OpenLLM on any x86 system. Make sure you have Docker installed.
 
 Then, clone this repo and `cd` into it:
 
 ```
-git clone https://github.com/getumbrel/llama-gpt.git
-cd llama-gpt
+git clone https://github.com/edgar971/open-chat.git
+cd open-chat
 ```
 
-You can now run LlamaGPT with any of the following models depending upon your hardware:
+You can now run OpenLLM with any of the following models depending upon your hardware:
 
-| Model size | Model used                          | Minimum RAM required | How to start LlamaGPT                            |
+| Model size | Model used                          | Minimum RAM required | How to start OpenLLM                            |
 | ---------- | ----------------------------------- | -------------------- | ------------------------------------------------ |
 | 7B         | Nous Hermes Llama 2 7B (GGML q4_0)  | 8GB                  | `docker compose up -d`                           |
 | 13B        | Nous Hermes Llama 2 13B (GGML q4_0) | 16GB                 | `docker compose -f docker-compose-13b.yml up -d` |
 | 70B        | Meta Llama 2 70B Chat (GGML q4_0)   | 48GB                 | `docker compose -f docker-compose-70b.yml up -d` |
 
-You can access LlamaGPT at `http://localhost:3000`.
+You can access OpenLLM at `http://localhost:3000`.
 
-To stop LlamaGPT, run:
+To stop OpenLLM, run:
 
 ```
 docker compose down
@@ -43,45 +43,9 @@ docker compose down
 
 ---
 
-## Benchmarks
-
-We've tested LlamaGPT models on the following hardware with the default system prompt, and user prompt: "How does the universe expand?" at temperature 0 to guarantee deterministic results. Generation speed is averaged over the first 10 generations.
-
-Feel free to add your own benchmarks to this table by opening a pull request.
-
-### Nous Hermes Llama 2 7B (GGML q4_0)
-
-| Device                           | Generation speed |
-| -------------------------------- | ---------------- |
-| M1 Max MacBook Pro (10 64GB RAM) | 8.2 tokens/sec   |
-| Umbrel Home (16GB RAM)           | 2.7 tokens/sec   |
-| Raspberry Pi 4 (8GB RAM)         | 0.9 tokens/sec   |
-
-### Nous Hermes Llama 2 13B (GGML q4_0)
-
-| Device                        | Generation speed |
-| ----------------------------- | ---------------- |
-| M1 Max MacBook Pro (64GB RAM) | 3.7 tokens/sec   |
-| Umbrel Home (16GB RAM)        | 1.5 tokens/sec   |
-
-### Meta Llama 2 70B Chat (GGML q4_0)
-
-Unfortunately, we don't have any benchmarks for this model yet. If you have one, please open a pull request to add it to this table.
-
-## Roadmap and contributing
-
-We're looking to add more features to LlamaGPT. You can see the roadmap [here](https://github.com/getumbrel/llama-gpt/issues/8#issuecomment-1681321145). The highest priorities are:
-
-- Add CUDA and Metal support (work in progress).
-- Moving the model out of the Docker image and into a separate volume (work in progress).
-- Updating the front-end to show model download progress, and to allow users to switch between models.
-- Making it easy to run custom models.
-
-If you're a developer who'd like to help with any of these, please open an issue to discuss the best way to tackle the challenge. If you're looking to help but not sure where to begin, check out [these issues](https://github.com/getumbrel/llama-gpt/labels/good%20first%20issue) that have specifically been marked as being friendly to new contributors.
-
 ## Acknowledgements
 
-A massive thank you to the following developers and teams for making LlamaGPT possible:
+A massive thank you to the following developers and teams for making OpenLLM possible:
 
 - [Mckay Wrigley](https://github.com/mckaywrigley) for building [Chatbot UI](https://github.com/mckaywrigley).
 - [Georgi Gerganov](https://github.com/ggerganov) for implementing [llama.cpp](https://github.com/ggerganov/llama.cpp).
