@@ -352,14 +352,14 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
       {!(apiKey || serverSideApiKeyIsSet) ? (
         <div className="mx-auto flex h-full w-[300px] flex-col justify-center space-y-6 sm:w-[600px]">
           <div className="text-center text-4xl font-bold text-black dark:text-white">
-            LlamaGPT
+            OpenLLM
           </div>
           <div className="text-center text-lg text-black dark:text-white">
-            <div className="mb-8">LlamaGPT  100% unaffiliated with OpenAI.</div>
+            <div className="mb-8">OpenLLM  100% unaffiliated with OpenAI.</div>
           </div>
           <div className="text-center text-gray-500 dark:text-gray-400">
             <div className="mb-2">
-              LlamaGPT allows you to self-host your own LLM.
+              OpenLLM allows you to self-host your own LLM.
             </div>
           </div>
         </div>
@@ -381,7 +381,7 @@ export const Chat = memo(({ stopConversationRef }: Props) => {
                         <Spinner size="16px" className="mx-auto" />
                       </div>
                     ) : (
-                      'LlamaGPT'
+                      'OpenLLM'
                     )}
                   </div>
 

@@ -360,7 +360,7 @@ const Home = ({
       }}
     >
       <Head>
-        <title>LlamaGPT</title>
+        <title>OpenLLM</title>
         <meta name="description" content="Chat with a local LLM on your Umbrel without leaking your data to OpenAI" />
         <meta
           name="viewport"
