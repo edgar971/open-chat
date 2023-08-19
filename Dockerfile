@@ -39,7 +39,7 @@ RUN apt-get update && apt-get install -y --assume-yes \
     && rm -rf /var/lib/apt/lists/* \
     && wget -qO- https://deb.nodesource.com/setup_19.x | bash - \ 
     && apt-get install -y nodejs \
-    && CMAKE_ARGS="-DLLAMA_CUBLAS=on" FORCE_CMAKE=1 pip install llama-cpp-python \
+    && CMAKE_ARGS="-DLLAMA_CUBLAS=on" FORCE_CMAKE=1 pip install llama-cpp-python==0.1.78 \
     && pip install numpy diskcache uvicorn fastapi sse-starlette pydantic-settings \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /etc/OpenCL/vendors && echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd \
