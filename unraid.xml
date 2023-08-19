@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>OpenChat</Name>
+  <Repository>ghcr.io/edgar971/open-chat-cuda:latest</Repository>
+  <Registry>ghcr.io/edgar971/open-chat-cuda:latest</Registry>
+  <Network>bridge</Network>
+  <MyIP/>
+  <Shell>sh</Shell>
+  <Privileged>false</Privileged>
+  <Support>TDB</Support>
+  <Project>https://github.com/edgar971/open-chat</Project>
+  <Overview>A self-hosted, offline, ChatGPT-like chatbot with open source LLM support. 100% private, with no data leaving your device.&#xD;
+</Overview>
+  <Category>HomeAutomation: Productivity: Tools:</Category>
+  <WebUI>http://[IP]:[PORT:3000]/</WebUI>
+  <TemplateURL/>
+  <Icon>https://camo.githubusercontent.com/9c313ed8df225449c5a6b68ff9655d6236d6ed4eb96790d10cdc9dec0ab670e3/68747470733a2f2f692e696d6775722e636f6d2f4c4935396375692e706e67</Icon>
+  <ExtraParams>--gpus all</ExtraParams>
+  <PostArgs/>
+  <CPUset/>
+  <DateInstalled>1692473093</DateInstalled>
+  <DonateText/>
+  <DonateLink/>
+  <Requires/>
+  <Config Name="Local Model Path" Target="MODEL" Default="" Mode="" Description="The local model path" Type="Variable" Display="always" Required="true" Mask="false">/models/llama-2-7b-chat.bin</Config>
+  <Config Name="Default Model UI" Target="DEFAULT_MODEL" Default="" Mode="" Description="Should be same as $MODEL" Type="Variable" Display="always" Required="true" Mask="false">/models/llama-2-7b-chat.bin</Config>
+  <Config Name="Model Download URL" Target="MODEL_DOWNLOAD_URL" Default="" Mode="" Description="GGML Model Binary. " Type="Variable" Display="always" Required="true" Mask="false">https://huggingface.co/TheBloke/Nous-Hermes-Llama-2-7B-GGML/resolve/main/nous-hermes-llama-2-7b.ggmlv3.q4_0.bin</Config>
+  <Config Name="Model Directory" Target="/models" Default="" Mode="rw" Description="The local model directory to use as a cache" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/models</Config>
+  <Config Name="Web UI" Target="3000" Default="" Mode="tcp" Description="Chat UI Port" Type="Port" Display="always" Required="false" Mask="false">3005</Config>
+  <Config Name="API Port" Target="8000" Default="" Mode="tcp" Description="HTTP API Port" Type="Port" Display="always" Required="false" Mask="false">8089</Config>
+  <Config Name="Number Of GPU Layers" Target="N_GPU_LAYERS" Default="" Mode="" Description="Layers to offload to GPU" Type="Variable" Display="advanced" Required="false" Mask="false">64</Config>
+</Container>
