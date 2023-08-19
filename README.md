@@ -6,37 +6,11 @@
 <p align="center">
   <h1 align="center">LlamaGPT</h1>
   <p align="center">
-    A self-hosted, offline, ChatGPT-like chatbot, powered by Llama 2. 100% private, with no data leaving your device.
-    <br />
-    <a href="https://umbrel.com"><strong>umbrel.com (we're hiring) »</strong></a>
-    <br />
-    <br />
-    <a href="https://twitter.com/umbrel">
-      <img src="https://img.shields.io/twitter/follow/umbrel?style=social" />
-    </a>
-    <a href="https://t.me/getumbrel">
-      <img src="https://img.shields.io/badge/community-chat-%235351FB">
-    </a>
-    <a href="https://reddit.com/r/getumbrel">
-      <img src="https://img.shields.io/reddit/subreddit-subscribers/getumbrel?style=social">
-    </a>
-    <a href="https://community.umbrel.com">
-      <img src="https://img.shields.io/badge/community-forum-%235351FB">
-    </a>
+    A self-hosted, offline, ChatGPT-like chatbot with different LLM support. 100% private, with no data leaving your device.
   </p>
 </p>
 
-## Demo
-
-https://github.com/getumbrel/llama-gpt/assets/10330103/5d1a76b8-ed03-4a51-90bd-12ebfaf1e6cd
-
 ## How to install
-
-### Install LlamaGPT on your umbrelOS home server
-
-Running LlamaGPT on an [umbrelOS](https://umbrel.com) home server is one click. Simply install it from the [Umbrel App Store](https://apps.umbrel.com/app/llama-gpt).
-
-[![LlamaGPT on Umbrel App Store](https://apps.umbrel.com/app/llama-gpt/badge-light.svg)](https://apps.umbrel.com/app/llama-gpt)
 
 ---
 
@@ -68,25 +42,6 @@ docker compose down
 ```
 
 ---
-
-
-### Install LlamaGPT with Kubernetes
-
-First, make sure you have a running Kubernetes cluster and `kubectl` is configured to interact with it.
-
-Then, clone this repo and `cd` into it.
-
-To deploy to Kubernetes first create a namespace:
-```bash
-kubectl create ns llama
-```
-
-Then apply the manifests under the `/deploy/kubernetes` directory with
-```bash
-kubectl apply -k deploy/kubernetes/. -n llama
-```
-
-Expose your service however you would normally do that. 
 
 ## Benchmarks
 
@@ -135,8 +90,4 @@ A massive thank you to the following developers and teams for making LlamaGPT po
 - [Tom Jobbins](https://huggingface.co/TheBloke) for [quantizing the Llama 2 models](https://huggingface.co/TheBloke/Nous-Hermes-Llama-2-7B-GGML).
 - [Meta](https://ai.meta.com/llama) for releasing Llama 2 under a permissive license.
 
----
 
-[![License](https://img.shields.io/github/license/getumbrel/llama-gpt?color=%235351FB)](https://github.com/getumbrel/llama-gpt/blob/master/LICENSE.md)
-
-[umbrel.com](https://umbrel.com)
