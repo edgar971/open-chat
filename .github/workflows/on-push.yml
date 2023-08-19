@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: ghcr.io/${{ github.repository }}-gpu
+      IMAGE_NAME: ghcr.io/${{ github.repository }}-cuda
     steps:
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
       - run: docker login --username "${{ github.actor }}" --password ${{ secrets.GITHUB_TOKEN }} ghcr.io
