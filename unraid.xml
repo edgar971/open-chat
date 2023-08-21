@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>OpenChat</Name>
+  <Name>OpenChat Cuda</Name>
   <Repository>ghcr.io/edgar971/open-chat-cuda:latest</Repository>
   <Registry>ghcr.io/edgar971/open-chat-cuda:latest</Registry>
   <Network>bridge</Network>
   <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
-  <Support>TDB</Support>
+  <Support>https://github.com/edgar971/open-chat/issues</Support>
   <Project>https://github.com/edgar971/open-chat</Project>
-  <Overview>A self-hosted, offline, ChatGPT-like chatbot with open source LLM support. 100% private, with no data leaving your device.&#xD;
+  <Overview>A self-hosted, offline, ChatGPT-like chatbot with open source LLM support and CUDA support. 100% private, with no data leaving your device.&#xD;
 </Overview>
   <Category>HomeAutomation: Productivity: Tools:</Category>
   <WebUI>http://[IP]:[PORT:3000]/</WebUI>

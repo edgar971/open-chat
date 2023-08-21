@@ -43,6 +43,23 @@ docker compose down
 
 ---
 
+## API Configuration
+
+Additional settings can be found [here](https://github.com/abetlen/llama-cpp-python/blob/main/llama_cpp/server/app.py#L23) and added as env variables or arguments to the run.sh (--n_ctx 12) script. 
+
+Example:
+
+```yml
+version: '3'
+services:
+  api:
+    image: ghcr.io/edgar971/open-chat-cuda:latest
+    environment:
+      - MODEL=/path/to/your/model
+      - N_CTX=4096
+    ports:
+```
+
 ## Acknowledgements
 
 A massive thank you to the following developers and teams for making OpenLLM possible:
