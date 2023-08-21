@@ -14,7 +14,7 @@
   <Category>HomeAutomation: Productivity: Tools:</Category>
   <WebUI>http://[IP]:[PORT:3000]/</WebUI>
   <TemplateURL/>
-  <Icon>https://camo.githubusercontent.com/9c313ed8df225449c5a6b68ff9655d6236d6ed4eb96790d10cdc9dec0ab670e3/68747470733a2f2f692e696d6775722e636f6d2f4c4935396375692e706e67</Icon>
+  <Icon>https://github.com/edgar971/open-chat/raw/main/logo.png</Icon>
   <ExtraParams>--gpus all</ExtraParams>
   <PostArgs/>
   <CPUset/>
