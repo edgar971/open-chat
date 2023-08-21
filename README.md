@@ -4,7 +4,6 @@
   </a>
 </p>
 <p align="center">
-  <h1 align="center">OpenLLM</h1>
   <p align="center">
     A self-hosted, offline, ChatGPT-like chatbot with different LLM support. 100% private, with no data leaving your device.
   </p>
