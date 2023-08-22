@@ -2,9 +2,10 @@
 
 if [ -z "$MODEL" ]
 then
-    echo "Please set the MODEL_FILE environment variable"
+    echo "Please set the MODEL environment variable"
     exit 1
 fi
+
 
 if [ -z "$MODEL_DOWNLOAD_URL" ]
 then
@@ -36,7 +37,6 @@ fi
 echo "Initializing server with:"
 echo "Batch size: $n_batch"
 echo "Number of CPU threads: $n_threads"
-echo "Number of GPU layers: $n_gpu_layers"
 echo "Context window: $n_ctx"
 
 # Start the first process

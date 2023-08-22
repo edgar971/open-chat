@@ -3,9 +3,8 @@ version: '3.6'
 services:
   llama-gpt-api-13b:
     build:
-      context: ./
+      context: .
       dockerfile: Dockerfile
-    restart: on-failure
     ports:
       - 8000:8000
       - 3000:3000
@@ -14,13 +13,8 @@ services:
       - './run.sh:/app/run.sh'
     environment:
       MODEL: '/models/llama-2-13b-chat.bin'
-      N_GPU_LAYERS: 64
       MODEL_DOWNLOAD_URL: 'https://huggingface.co/TheBloke/Nous-Hermes-Llama2-GGML/resolve/main/nous-hermes-llama2-13b.ggmlv3.q4_0.bin'
-      OPENAI_API_KEY: sk-XXXXXXXXXXXXXXXXXXXX
-      OPENAI_API_HOST: http://localhost:8000
-      DEFAULT_MODEL: /models/llama-2-13b-chat.bin
-      WAIT_HOSTS: localhost:8000
-      WAIT_TIMEOUT: 600
+      N_GPU_LAYERS: 64
     privileged: true
     deploy:
       resources:
