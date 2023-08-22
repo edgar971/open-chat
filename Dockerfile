@@ -43,7 +43,8 @@ RUN apt-get update && apt-get install -y --assume-yes \
     && pip install numpy==1.25.2 diskcache==5.6.1 uvicorn==0.23.2 fastapi==0.101.1 sse-starlette==1.6.5 pydantic-settings==2.0.3 \
     && rm -rf /var/lib/apt/lists/* \
     && mkdir -p /etc/OpenCL/vendors && echo "libnvidia-opencl.so.1" > /etc/OpenCL/vendors/nvidia.icd \
-    && apt-get clean 
+    && apt-get clean  \
+    && mkdir -p /models
 
 COPY ./run.sh ./run.sh
 
