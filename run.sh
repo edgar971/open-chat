@@ -2,15 +2,16 @@
 
 if [ -z "$MODEL" ]
 then
-    echo "Please set the MODEL environment variable"
-    exit 1
+    export MODEL=/models/llama-2-7b-chat.bin
+    echo "MODEL environment variable not set, using $MODEL as default"
 fi
 
+export DEFAULT_MODEL=$MODEL
 
 if [ -z "$MODEL_DOWNLOAD_URL" ]
 then
-    echo "Please set the MODEL_DOWNLOAD_URL environment variable"
-    exit 1
+    MODEL_DOWNLOAD_URL=https://huggingface.co/TheBloke/Nous-Hermes-Llama-2-7B-GGML/resolve/main/nous-hermes-llama-2-7b.ggmlv3.q4_0.bin
+    echo "MODEL_DOWNLOAD_URL environment variable not set, using $MODEL_DOWNLOAD_URL as default"
 fi
 
 if [ ! -f $MODEL ]; then
