@@ -1,0 +1,46 @@
+# ---- Base Node ----
+FROM node:19-alpine AS base
+WORKDIR /app
+COPY /ui/package*.json ./
+
+# ---- Dependencies ----
+FROM base AS dependencies
+RUN npm ci
+
+# ---- Build ----
+FROM dependencies AS build
+COPY /ui .
+RUN npm run build
+
+# ---- Production ----
+FROM ubuntu:22.04
+
+ENV HOST=0.0.0.0
+ENV OPENAI_API_KEY=sk-XXXXXXXXXXXXXXXXXXXX
+ENV OPENAI_API_HOST=http://localhost:8000
+
+WORKDIR /app
+
+COPY --from=dependencies /app/node_modules ./node_modules
+COPY --from=build /app/.next ./.next
+COPY --from=build /app/public ./public
+COPY --from=build /app/package*.json ./
+COPY --from=build /app/next.config.js ./next.config.js
+COPY --from=build /app/next-i18next.config.js ./next-i18next.config.js
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y --assume-yes \
+    wget python3-pip \
+    && wget -qO- https://deb.nodesource.com/setup_19.x | bash - \ 
+    && apt-get install -y nodejs \
+    && pip3 install llama-cpp-python==0.1.78 numpy==1.25.2 diskcache==5.6.1 uvicorn==0.23.2 fastapi==0.101.1 sse-starlette==1.6.5 pydantic-settings==2.0.3 \
+    && rm -rf /var/cache/apk/* \
+    && mkdir -p /models
+
+COPY ./run.sh ./run.sh
+
+# Expose any necessary ports
+EXPOSE 3000 8000
+
+# Entrypoint or CMD to start your application
+CMD ["/bin/sh", "/app/run.sh"]

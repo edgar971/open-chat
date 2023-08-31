@@ -4,7 +4,7 @@ services:
   llama-gpt-api-7b:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile-CUDA
     ports:
       - 8000:8000
       - 3000:3000
