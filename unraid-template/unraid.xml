@@ -9,8 +9,7 @@
   <Privileged>false</Privileged>
   <Support>https://github.com/edgar971/open-chat/issues</Support>
   <Project>https://github.com/edgar971/open-chat</Project>
-  <Overview>A self-hosted, offline, ChatGPT-like chatbot with open source LLM support. 100% private, with no data leaving your device.&#xD; Please note that this
-  version requires an NVIDIA GPU with the Unraid NVIDIA-DRIVER plugin. 
+  <Overview>A self-hosted, offline, ChatGPT-like chatbot with open source LLM support. 100% private, with no data leaving your device.&#xD; Please note that this version requires an NVIDIA GPU with the Unraid NVIDIA-DRIVER plugin. 
 </Overview>
   <Category>HomeAutomation: Productivity: Tools:</Category>
   <WebUI>http://[IP]:[PORT:3000]/</WebUI>
