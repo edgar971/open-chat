@@ -1,21 +1,19 @@
 <?xml version="1.0"?>
 <Container version="2">
-  <Name>OpenChat-Cuda</Name>
-  <Repository>ghcr.io/edgar971/open-chat-cuda:v1.0.3</Repository>
-  <Registry>ghcr.io/edgar971/open-chat-cuda:v1.0.3</Registry>
+  <Name>OpenChat-CPU</Name>
+  <Repository>ghcr.io/edgar971/open-chat-cpu:v1.0.3</Repository>
+  <Registry>ghcr.io/edgar971/open-chat-cpu:v1.0.3</Registry>
   <Network>bridge</Network>
   <MyIP/>
   <Shell>sh</Shell>
   <Privileged>false</Privileged>
   <Support>https://github.com/edgar971/open-chat/issues</Support>
   <Project>https://github.com/edgar971/open-chat</Project>
-  <Overview>A self-hosted, offline, ChatGPT-like chatbot with open source LLM support. 100% private, with no data leaving your device.&#xD; Please note that this version requires an NVIDIA GPU with the Unraid NVIDIA-DRIVER plugin. 
-</Overview>
+  <Overview>A self-hosted, offline, ChatGPT-like chatbot with open source LLM support. 100% private, with no data leaving your device.&#xD; </Overview>
   <Category>HomeAutomation: Productivity: Tools:</Category>
   <WebUI>http://[IP]:[PORT:3000]/</WebUI>
   <TemplateURL/>
   <Icon>https://github.com/edgar971/open-chat/raw/main/logo.png</Icon>
-  <ExtraParams>--gpus all</ExtraParams>
   <PostArgs/>
   <CPUset/>
   <DateInstalled>1692670577</DateInstalled>
@@ -27,5 +25,4 @@
   <Config Name="Model Directory" Target="/models" Default="/mnt/user/appdata/models" Mode="rw" Description="The local model directory to use as a cache" Type="Path" Display="always" Required="false" Mask="false"/>
   <Config Name="Web UI" Target="3000" Default="3000" Mode="tcp" Description="Chat UI Port" Type="Port" Display="always" Required="false" Mask="false"/>
   <Config Name="API Port" Target="8000" Default="8000" Mode="tcp" Description="HTTP API Port" Type="Port" Display="always" Required="false" Mask="false"/>
-  <Config Name="Number Of GPU Layers" Target="N_GPU_LAYERS" Default="" Mode="" Description="Layers to offload to GPU" Type="Variable" Display="advanced" Required="false" Mask="false">64</Config>
 </Container>
