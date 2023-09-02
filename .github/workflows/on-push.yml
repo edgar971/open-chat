@@ -19,5 +19,5 @@ jobs:
       - uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9 # v3.5.3
       - run: docker login --username "${{ github.actor }}" --password ${{ secrets.GITHUB_TOKEN }} ghcr.io
       - run: docker buildx create --use
-      - run: docker buildx build -f Dockerfile-${{ matrix.type }} --tag $IMAGE_NAME:${{ github.ref_name }} --push .
-      - run: docker buildx build -f Dockerfile-${{ matrix.type }} --tag $IMAGE_NAME:latest --push .
+      - run: docker buildx build --platform linux/amd64 -f Dockerfile-${{ matrix.type }} --tag $IMAGE_NAME:${{ github.ref_name }} --push .
+      - run: docker buildx build --platform linux/amd64 -f Dockerfile-${{ matrix.type }} --tag $IMAGE_NAME:latest --push .
