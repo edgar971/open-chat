@@ -10,7 +10,7 @@ export DEFAULT_MODEL=$MODEL
 
 if [ -z "$MODEL_DOWNLOAD_URL" ]
 then
-    MODEL_DOWNLOAD_URL=https://huggingface.co/TheBloke/Nous-Hermes-Llama-2-7B-GGML/resolve/main/nous-hermes-llama-2-7b.ggmlv3.q4_0.bin
+    MODEL_DOWNLOAD_URL=https://huggingface.co/TheBloke/Nous-Hermes-Llama-2-7B-GGUF/resolve/main/nous-hermes-llama-2-7b.Q4_0.gguf
     echo "MODEL_DOWNLOAD_URL environment variable not set, using $MODEL_DOWNLOAD_URL as default"
 fi
 
@@ -22,17 +22,34 @@ else
 fi
 
 # Get the number of available threads on the system
-n_threads=$(grep -c ^processor /proc/cpuinfo)
+if [ -z "$N_THREADS" ];
+then
+    n_threads=$(grep -c ^processor /proc/cpuinfo)
+else
+    n_threads="$N_THREADS"
+fi
+
 
 # Define context window
-n_ctx=4096
+if [ -z "$CTX_SIZE" ];
+then
+    n_ctx=4096
+else
+    n_ctx="$CTX_SIZE"
+fi
+
 
 # Define batch size
-n_batch=2096
-# If total RAM is less than 8GB, set batch size to 1024
-total_ram=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
-if [ $total_ram -lt 8000000 ]; then
-    n_batch=1024
+if [ -z "$BATCH_SIZE" ];
+then
+    n_batch=2096
+    # If total RAM is less than 8GB, set batch size to 1024
+    total_ram=$(cat /proc/meminfo | grep MemTotal | awk '{print $2}')
+    if [ $total_ram -lt 8000000 ]; then
+        n_batch=1024
+    fi
+else
+    n_batch="$BATCH_SIZE"
 fi
 
 echo "Initializing server with:"
