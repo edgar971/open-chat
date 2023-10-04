@@ -1,5 +1,5 @@
 import { IconExternalLink } from '@tabler/icons-react';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 
 import { useTranslation } from 'next-i18next';
 
@@ -8,6 +8,7 @@ import { OpenAIModel } from '@/types/openai';
 import HomeContext from '@/pages/api/home/home.context';
 
 export const ModelSelect = () => {
+  const [isFirstLoad, setFirstLoad] = useState(true);
   const { t } = useTranslation('chat');
 
   const {
@@ -16,15 +17,27 @@ export const ModelSelect = () => {
     dispatch: homeDispatch,
   } = useContext(HomeContext);
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleModelIdChange = (modelId: string) => {
     selectedConversation &&
       handleUpdateConversation(selectedConversation, {
         key: 'model',
         value: models.find(
-          (model) => model.id === e.target.value,
+          (model) => model.id === modelId,
         ) as OpenAIModel,
       });
   };
+
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => handleModelIdChange(e.target.value);
+
+  const defaultValue = selectedConversation?.model?.id || defaultModelId;
+
+  const value = models.findIndex(model => model.id === defaultValue) < 0 && models.length > 0 ? models[0].id : defaultValue;
+
+  useEffect(() => {
+    if (value && value !== selectedConversation?.model?.id) {
+      handleModelIdChange(value);
+    }
+  }, [value, selectedConversation]);
 
   return (
     <div className="flex flex-col">
@@ -35,7 +48,7 @@ export const ModelSelect = () => {
         <select
           className="w-full bg-transparent p-2"
           placeholder={t('Select a model') || ''}
-          value={selectedConversation?.model?.id || defaultModelId}
+          value={value}
           onChange={handleChange}
         >
           {models.map((model) => (
