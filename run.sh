@@ -52,13 +52,11 @@ else
     n_batch="$BATCH_SIZE"
 fi
 
-# Check if we need to do back-compat stuff
-if [ "${MODEL: -5}" != ".gguf" ];
-then
-    echo "Model MUST be in GGUF format due to a break in llama.cpp. If you were using the default model" \
-      "just clear the MODEL environment variable, or set it to the default /models/llama-2-7b-chat.gguf."
-    exit -1
-fi
+# Inform the user about the silly breaks
+echo ""
+echo "Note: Model MUST be in GGUF format due to a break in llama.cpp. If you were using the default model" \
+    "just clear the MODEL environment variable, or set it to the default /models/llama-2-7b-chat.gguf."
+echo ""
 
 echo "Initializing server with:"
 echo "Batch size: $n_batch"
