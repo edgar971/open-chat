@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y --assume-yes \
     wget curl python3-pip libopenblas-dev \
     && wget -qO- https://deb.nodesource.com/setup_19.x | bash - \ 
     && apt-get install -y nodejs \
-    && pip3 install llama-cpp-python==0.1.78 numpy==1.25.2 diskcache==5.6.1 uvicorn==0.23.2 fastapi==0.101.1 sse-starlette==1.6.5 pydantic-settings==2.0.3 \
+    && pip3 install llama-cpp-python==0.2.11 numpy==1.25.2 diskcache==5.6.1 uvicorn==0.23.2 fastapi==0.101.1 sse-starlette==1.6.5 starlette-context==0.3.6 pydantic-settings==2.0.3 \
     && rm -rf /var/cache/apk/* \
     && mkdir -p /models
 

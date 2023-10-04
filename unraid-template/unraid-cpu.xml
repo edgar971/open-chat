@@ -20,8 +20,8 @@
   <DonateText/>
   <DonateLink/>
   <Requires/>
-  <Config Name="Local Model Path" Target="MODEL" Default="/models/llama-2-7b-chat.bin" Mode="" Description="The local model path" Type="Variable" Display="always" Required="true" Mask="false"/>
-  <Config Name="Model Download URL" Target="MODEL_DOWNLOAD_URL" Default="https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML/resolve/main/llama-2-7b-chat.ggmlv3.q4_0.bin" Mode="" Description="GGML Model Binary. " Type="Variable" Display="always" Required="false" Mask="false"/>
+  <Config Name="Local Model Path" Target="MODEL" Default="/models/llama-2-7b-chat.gguf" Mode="" Description="The local model path" Type="Variable" Display="always" Required="true" Mask="false"/>
+  <Config Name="Model Download URL" Target="MODEL_DOWNLOAD_URL" Default="https://huggingface.co/TheBloke/Llama-2-7b-Chat-GGUF/resolve/main/llama-2-7b-chat.Q4_0.gguf" Mode="" Description="GGUF Model Binary. " Type="Variable" Display="always" Required="false" Mask="false"/>
   <Config Name="Model Directory" Target="/models" Default="/mnt/user/appdata/models" Mode="rw" Description="The local model directory to use as a cache" Type="Path" Display="always" Required="false" Mask="false"/>
   <Config Name="Web UI" Target="3000" Default="3000" Mode="tcp" Description="Chat UI Port" Type="Port" Display="always" Required="false" Mask="false"/>
   <Config Name="API Port" Target="8000" Default="8000" Mode="tcp" Description="HTTP API Port" Type="Port" Display="always" Required="false" Mask="false"/>

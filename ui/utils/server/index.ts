@@ -67,6 +67,7 @@ export const OpenAIStream = async (
   const decoder = new TextDecoder();
 
   if (res.status !== 200) {
+    console.log("Warning, got an error!", res.status, res.statusText);
     const result = await res.json();
     if (result.error) {
       throw new OpenAIError(
@@ -89,6 +90,12 @@ export const OpenAIStream = async (
       const onParse = (event: ParsedEvent | ReconnectInterval) => {
         if (event.type === 'event') {
           const data = event.data;
+
+          if (data === "[DONE]") {
+            // We are done! No need to parse this
+            controller.close();
+            return;
+          }
 
           try {
             const json = JSON.parse(data);

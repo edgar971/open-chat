@@ -12,13 +12,20 @@ export enum OpenAIModelID {
   GPT_3_5_AZ = 'gpt-35-turbo',
   GPT_4 = 'gpt-4',
   GPT_4_32K = 'gpt-4-32k',
-  LLAMA_7B_CHAT_GGMLV3_Q4_0 = '/models/llama-2-7b-chat.bin',
-  LLAMA_13B_CHAT_GGMLV3_Q4_0 = '/models/llama-2-13b-chat.bin',
-  LLAMA_70B_CHAT_GGMLV3_Q4_0 = '/models/llama-2-70b-chat.bin',
+  LLAMA_7B_CHAT_GGUF_Q4_0 = '/models/llama-2-7b-chat.gguf',
+  LLAMA_13B_CHAT_GGMLV3_Q4_0 = '/models/llama-2-13b-chat.gguf',
+  LLAMA_70B_CHAT_GGMLV3_Q4_0 = '/models/llama-2-70b-chat.gguf',
 }
 
 // in case the `DEFAULT_MODEL` environment variable is not set or set to an unsupported model
-export const fallbackModelID = OpenAIModelID.LLAMA_7B_CHAT_GGMLV3_Q4_0;
+export const fallbackModelID = OpenAIModelID.LLAMA_7B_CHAT_GGUF_Q4_0;
+
+export const DEFAULT_OPEN_AI_MODEL: OpenAIModel =  {
+  id: "__",
+  name: "__",
+  maxLength: 12000,
+  tokenLimit: 4000,
+}
 
 export const OpenAIModels: Record<OpenAIModelID, OpenAIModel> = {
   [OpenAIModelID.GPT_3_5]: {
@@ -45,8 +52,8 @@ export const OpenAIModels: Record<OpenAIModelID, OpenAIModel> = {
     maxLength: 96000,
     tokenLimit: 32000,
   },
-  [OpenAIModelID.LLAMA_7B_CHAT_GGMLV3_Q4_0]: {
-    id: OpenAIModelID.LLAMA_7B_CHAT_GGMLV3_Q4_0,
+  [OpenAIModelID.LLAMA_7B_CHAT_GGUF_Q4_0]: {
+    id: OpenAIModelID.LLAMA_7B_CHAT_GGUF_Q4_0,
     name: 'Llama 2 7B',
     maxLength: 12000,
     tokenLimit: 4000,
