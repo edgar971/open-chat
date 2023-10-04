@@ -55,10 +55,14 @@ const handler = async (req: Request): Promise<Response> => {
         for (const [key, value] of Object.entries(OpenAIModelID)) {
           if (value === model_name) {
             return {
-              id: model.id,
+              id: model_name,
               name: OpenAIModels[value].name,
             };
           }
+        }
+        return {
+          id: model_name,
+          name: model_name,
         }
       })
       .filter(Boolean);
